@@ -13,15 +13,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude
 public class OwnerPostDTO {
 
-    private String model;
-    private String brand;
-    private String price;
-    private String description;
-    private String engineVersion;
-    private String city;
-    private String createDate;
-    private Long ownerId;
-    private String ownerName;
-    private String ownerType;
-    private String contact;
+    private String name;
+    private String type;
+    private String contactNumber;
 }
