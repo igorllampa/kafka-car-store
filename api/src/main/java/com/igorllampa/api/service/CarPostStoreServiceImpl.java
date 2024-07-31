@@ -3,9 +3,11 @@ package com.igorllampa.api.service;
 import com.igorllampa.api.client.CarPostStoreClient;
 import com.igorllampa.api.dto.CarPostDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CarPostStoreServiceImpl implements CarPostStoreService{
 
     @Autowired
