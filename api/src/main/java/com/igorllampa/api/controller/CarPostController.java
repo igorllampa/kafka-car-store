@@ -18,6 +18,7 @@ public class CarPostController {
     @Autowired
     private CarPostStoreService carPostStoreService;
 
+    @Autowired
     private KafkaProducerMessage kafkaProducerMessage;
 
     @PostMapping("/posts")
