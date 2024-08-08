@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -23,7 +24,8 @@ public class CarPostServiceImpl implements CarPostService {
 
     @Override
     public void newPostDetails(CarPostDTO carPostDTO) {
-
+        CarPostModel carPostEntity = mapCarDtoToEntity(carPostDTO);
+        carPostRepository.save(carPostEntity);
     }
 
     @Override
@@ -71,4 +73,26 @@ public class CarPostServiceImpl implements CarPostService {
                 .ownerName(carPostModel.getOwnerPost().getName())
                 .price(carPostModel.getPrice()).build();
     }
+
+    private CarPostModel mapCarDtoToEntity(CarPostDTO carPostDTO) {
+        CarPostModel carPostEntity = new CarPostModel();
+
+        ownerPostRepository.findById(carPostDTO.getOwnerId()).ifPresentOrElse(item->{
+            carPostEntity.setOwnerPost(item);
+            carPostEntity.setContact(item.getContactNumber());
+        }, ()-> {
+            throw new RuntimeException();
+        });
+
+        carPostEntity.setModel(carPostDTO.getModel());
+        carPostEntity.setBrand(carPostDTO.getBrand());
+        carPostEntity.setPrice(carPostDTO.getPrice());
+        carPostEntity.setCity(carPostDTO.getCity());
+        carPostEntity.setDescription(carPostDTO.getDescription());
+        carPostEntity.setEngineVersion(carPostDTO.getEngineVersion());
+        carPostEntity.setCreatedDate(String.valueOf(new Date()));
+
+        return carPostEntity;
+    }
+
 }
