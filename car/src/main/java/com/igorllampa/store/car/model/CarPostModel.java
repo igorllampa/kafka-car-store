@@ -3,7 +3,6 @@ package com.igorllampa.store.car.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name="car_post")
