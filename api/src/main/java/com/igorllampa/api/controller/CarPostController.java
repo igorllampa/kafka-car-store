@@ -4,6 +4,8 @@ import com.igorllampa.api.dto.CarPostDTO;
 import com.igorllampa.api.message.KafkaProducerMessage;
 import com.igorllampa.api.service.CarPostStoreService;
 import org.apache.coyote.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,8 @@ import java.util.List;
 @RequestMapping("/api/car")
 public class CarPostController {
 
+    private final Logger LOG = LoggerFactory.getLogger(CarPostController.class);
+
     @Autowired
     private CarPostStoreService carPostStoreService;
 
@@ -23,6 +27,9 @@ public class CarPostController {
 
     @PostMapping("/posts")
     public ResponseEntity postCarForSale(@RequestBody CarPostDTO carPostDTO){
+
+        LOG.info("MAIN REST API - Produced Car Post information: {}", carPostDTO);
+
         kafkaProducerMessage.sendMessage(carPostDTO);
         return ResponseEntity.ok().build();
     }
