@@ -1,13 +1,14 @@
 package com.igorllampa.analytics.data.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "brand_analytics")
 @Data
-@NoArgsConstructor
+@AllArgsConstructor
 public class BrandAnalyticsEntity {
 
     @Id
