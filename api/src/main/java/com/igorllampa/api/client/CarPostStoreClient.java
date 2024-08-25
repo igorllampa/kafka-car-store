@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.yaml.snakeyaml.util.ArrayUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -22,8 +24,8 @@ public class CarPostStoreClient {
     private RestTemplate restTemplate;
 
     public List<CarPostDTO> carForSaleClient(){
-        ResponseEntity<CarPostDTO> responseEntity = restTemplate.getForEntity(POSTS_STORE_SERVICE_URI+"/cars", CarPostDTO.class);
-        return Arrays.asList(Objects.requireNonNull(responseEntity.getBody()));
+        ResponseEntity<CarPostDTO[]> carPostDTOList = restTemplate.getForEntity(POSTS_STORE_SERVICE_URI + "/cars", CarPostDTO[].class);
+        return Arrays.asList(Objects.requireNonNull(carPostDTOList.getBody()));
     }
 
     public void ownerPostsClient(OwnerPostDTO newUser){
