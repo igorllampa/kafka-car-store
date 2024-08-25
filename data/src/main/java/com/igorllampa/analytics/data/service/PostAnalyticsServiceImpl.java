@@ -25,7 +25,9 @@ public class PostAnalyticsServiceImpl implements PostAnalyticsService{
 
     @Override
     public void saveDataAnalytics(CarPostDTO carPostDTO) {
-
+        saveBrandAnalytics(carPostDTO.getBrand());
+        saveCarModelAnalytics(carPostDTO.getModel());
+        saveCarModelPriceAnalytics(carPostDTO.getModel(), carPostDTO.getPrice());
     }
 
     private void saveBrandAnalytics(String brand){
@@ -33,7 +35,10 @@ public class PostAnalyticsServiceImpl implements PostAnalyticsService{
             item.setPosts(item.getPosts()+1);
             brandAnalyticsRepository.save(item);
         }, () -> {
-            BrandAnalyticsEntity brandAnalyticsEntity = new BrandAnalyticsEntity(1L, brand, 1L);
+            var brandAnalyticsEntity = BrandAnalyticsEntity.builder()
+                    .brand(brand)
+                    .posts(1L)
+                    .build();
             brandAnalyticsRepository.save(brandAnalyticsEntity);
         });
     }
@@ -43,7 +48,12 @@ public class PostAnalyticsServiceImpl implements PostAnalyticsService{
             item.setPosts(item.getPosts()+1);
             carModelAnalyticsRepository.save(item);
         }, () -> {
-            CarModelAnalyticsEntity carModelAnalyticsEntity = new CarModelAnalyticsEntity(1L, model, 1L);
+            var carModelAnalyticsEntity =
+                    CarModelAnalyticsEntity.builder()
+                    .model(model)
+                    .posts(1L)
+                    .build();
+
             carModelAnalyticsRepository.save(carModelAnalyticsEntity);
         });
     }
