@@ -71,6 +71,9 @@ public class CarPostServiceImpl implements CarPostService {
                 .engineVersion(carPostModel.getEngineVersion())
                 .createdDate(carPostModel.getCreatedDate())
                 .ownerName(carPostModel.getOwnerPost().getName())
+                .ownerType(carPostModel.getOwnerPost().getType())
+                .ownerId(carPostModel.getOwnerPost().getId())
+                .contact(carPostModel.getContact())
                 .price(carPostModel.getPrice()).build();
     }
 
