@@ -3,7 +3,6 @@ package com.igorllampa.api.controller;
 import com.igorllampa.api.dto.CarPostDTO;
 import com.igorllampa.api.message.KafkaProducerMessage;
 import com.igorllampa.api.service.CarPostStoreService;
-import org.apache.coyote.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +39,12 @@ public class CarPostController {
         return ResponseEntity.status(HttpStatus.FOUND).body(carForSales);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("posts/{id}")
     public ResponseEntity changeCarSale(@RequestBody CarPostDTO carPostDTO, @PathVariable("id") String id){
         carPostStoreService.changeCarForSale(carPostDTO, id);
         return ResponseEntity.ok().build();
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("posts/{id}")
     public ResponseEntity deleteCarForSale(@PathVariable("id") String id){
         carPostStoreService.removeCarForSale(id);
         return ResponseEntity.ok().build();
