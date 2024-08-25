@@ -2,6 +2,7 @@ package com.igorllampa.analytics.data.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "car_model_analytics")
 @Data
 @AllArgsConstructor
+@Builder
+@NoArgsConstructor
 public class CarModelAnalyticsEntity {
 
     @Id
