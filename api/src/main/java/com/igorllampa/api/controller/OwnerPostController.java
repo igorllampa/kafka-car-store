@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/owner")
+@RequestMapping("api/owner")
 public class OwnerPostController {
 
     private final Logger LOG = LoggerFactory.getLogger(OwnerPostController.class);
