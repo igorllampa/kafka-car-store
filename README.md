@@ -8,3 +8,6 @@ https://github.com/conduktor/kafka-stack-docker-compose
 
 # Docker hub image for PostgreSQL database
 https://hub.docker.com/_/postgres
+
+# Conduktor: visually view and manage Kafka 
+https://conduktor.io/download
